@@ -67,6 +67,20 @@ public class TennisGameTest {
         assertEquals("Advantage " + playerOne.getName(), score);
     }
 
+    @Test
+    public void testPlayerTwoWins(){
+        createScore(2, 6);
+        String score = game.getScore();
+        assertEquals(playerTwo.getName()+" wins", score);
+    }
+
+    @Test
+    public void testPlayerOneWins(){
+        createScore(6, 2);
+        String score = game.getScore();
+        assertEquals(playerOne.getName()+" wins", score);
+    }
+
 
     private void createScore(int playerOneBalls, int playerTwoBalls) {
         for (int i = 0; i < playerOneBalls; i++) {

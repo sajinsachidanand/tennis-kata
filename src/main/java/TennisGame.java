@@ -24,7 +24,20 @@ public class TennisGame {
 
     private BiPredicate<Player,Player> whoLeads = (p1, p2) -> p1.getScore() > p2.getScore();
 
+    private BiPredicate<Player,Player> isPlayerOneWins = (p1,p2) ->
+            p1.getScore() == 6 && p2.getScore() < 5;
+
+    private BiPredicate<Player,Player> isPlayerTwoWins = (p1,p2) ->
+            p2.getScore() == 6 && p1.getScore() < 5;
+
+
+
     public String getScore() {
+
+        if (isPlayerOneWins.test(playerOne,playerTwo) || isPlayerTwoWins.test(playerOne,playerTwo)) {
+            return playerWithHighestScore(playerOne,playerTwo).getName() + " wins";
+        }
+
         if (hasPlayerOneInAdvantage.test(playerOne,playerTwo) || hasPlayerTwoInAdvantage.test(playerOne,playerTwo)) {
             return "Advantage " + playerWithHighestScore(playerOne,playerTwo).getName();
         }
