@@ -14,7 +14,7 @@ public class TennisGameTest {
     public void testNewGameShouldReturnZeroAll() {
         String score = game.getScore();
 
-        assertEquals("Zero all", score);
+        assertEquals("Zero,Zero", score);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class TennisGameTest {
         game.playerTwoScores();
 
         String score = game.getScore();
-        assertEquals("Fifteen all", score);
+        assertEquals("Fifteen,Fifteen", score);
     }
 
 
@@ -69,7 +69,12 @@ public class TennisGameTest {
 
 
     private void createScore(int playerOneBalls, int playerTwoBalls) {
-
+        for (int i = 0; i < playerOneBalls; i++) {
+            game.playerOneScores();
+        }
+        for (int i = 0; i < playerTwoBalls; i++) {
+            game.playerTwoScores();
+        }
     }
 
 
