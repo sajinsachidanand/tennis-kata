@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TennisGameTest {
 
-    Player playerOne = new Player("Nadal");
-    Player playerTwo = new Player("Federer");
+    private Player playerOne = new Player("Nadal");
+    private Player playerTwo = new Player("Federer");
 
-    TennisGame game = new TennisGame(playerOne, playerTwo);
+    private TennisGame game = new TennisGame(playerOne, playerTwo);
 
     @Test
     public void testNewGameShouldReturnZeroAll() {
@@ -68,17 +68,31 @@ public class TennisGameTest {
     }
 
     @Test
-    public void testPlayerTwoWins(){
+    public void testPlayerTwoWins() {
         createScore(2, 6);
         String score = game.getScore();
-        assertEquals(playerTwo.getName()+" wins", score);
+        assertEquals(playerTwo.getName() + " wins", score);
     }
 
     @Test
-    public void testPlayerOneWins(){
+    public void testPlayerOneWins() {
         createScore(6, 2);
         String score = game.getScore();
-        assertEquals(playerOne.getName()+" wins", score);
+        assertEquals(playerOne.getName() + " wins", score);
+    }
+
+    @Test
+    public void testPlayerTwoWinsAfterAdvantage() {
+        createScore(6, 8);
+        String score = game.getScore();
+        assertEquals(playerTwo.getName() + " wins", score);
+    }
+
+    @Test
+    public void testPlayerOneWinsAfterAdvantage() {
+        createScore(8, 6);
+        String score = game.getScore();
+        assertEquals(playerOne.getName() + " wins", score);
     }
 
 
